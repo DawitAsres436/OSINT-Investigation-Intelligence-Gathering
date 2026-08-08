@@ -1,0 +1,200 @@
+STEP 1 — TARGET OVERVIEW
+========================
+
+[1] Target Website
+URL: https://www.chicken-road2.app/
+Purpose: Direct observation and identification of the target website.
+Accessed: 2026-08-04
+
+STEP 2 — WHOIS / DOMAIN REGISTRATION
+====================================
+
+[2] WHOIS.com
+URL: https://www.whois.com/whois/chicken-road2.app
+Information obtained:
+- Domain registration date
+- Domain expiration date
+- Last update date
+- Domain status
+- Name servers
+- Registrar
+- Registrar IANA ID
+- Public registration contact information
+Accessed: 2026-08-04
+
+
+[2.1] ICANN Lookup / Registry RDAP
+URL: https://lookup.icann.org/en
+Target queried: chicken-road2.app
+Information obtained:
+- Registry domain ID
+- Domain status
+- Creation date
+- Update date
+- Expiration date
+- Nameservers
+- Registrar
+- DNSSEC information
+- Public registration contact information
+Accessed: 2026-08-04
+
+
+
+STEP 3 — IP ADDRESS
+=======================
+[3] ViewDNS — DNS Record Lookup
+URL: https://viewdns.info/dnsrecord/
+Target queried: chicken-road2.app
+Information obtained:
+- A records
+- AAAA records
+- NS records
+- SOA record
+- TXT record
+- TTL values
+Accessed: 2026-08-04
+
+
+
+[3.1] Google Public DNS
+Resolver: 8.8.8.8
+Used through: dig
+Target: chicken-road2.app
+Information obtained:
+- A records
+- AAAA records
+- NS records
+Accessed: 2026-08-04
+
+
+
+
+STEP 4 — TECHNOLOGIES / INFRASTRUCTURE OBSERVATION
+==================================================
+[4] Cloudflare Radar
+URL: https://radar.cloudflare.com/scan/b11841f3-aebf-4d7d-90f3-e95403cbf2f1/summary
+Target: https://www.chicken-road2.app/
+Purpose: Passive analysis of website technologies, network activity, redirects and security-related observations.
+Scan ID: b11841f3-aebf-4d7d-90f3-e95403cbf2f1
+Accessed: 2026-08-04
+
+
+
+STEP 5 — HTTP RESPONSE HEADERS
+==============================
+[5] HTTP Response Headers — curl
+Target: https://chicken-road2.app/
+Command: curl -I https://chicken-road2.app/
+Information obtained:
+- HTTP response status
+- Redirect destination
+- Server information
+- HSTS
+- Cache behavior
+- HTTP/3 advertisement
+- Vercel response identifier
+Accessed: 2026-08-05
+
+
+
+STEP 6 — SSL/TLS CERTIFICATE
+============================
+[6] OpenSSL TLS Certificate Inspection
+
+Target:
+chicken-road2.app
+
+Method:
+OpenSSL s_client / x509
+
+Purpose:
+Independent verification of the publicly presented TLS certificate,
+certificate issuer, validity period, cryptographic parameters and
+subject alternative names.
+
+Collection Date:
+2026-08-05
+
+
+
+STEP 7 — CERTIFICATE TRANSPARENCY
+=================================
+[7] Certificate Transparency — crt.sh
+URL:
+https://crt.sh/?q=chicken-road2.app
+
+Target:
+chicken-road2.app
+
+Purpose:
+Passive Certificate Transparency investigation to identify publicly
+logged TLS certificates associated with the target domain.
+
+Information obtained:
+- Certificate issuance history
+- Certificate Transparency log entries
+- Certificate issuers
+- Certificate validity periods
+- Base-domain certificates
+- Wildcard certificates
+- Historical certificate activity
+
+Accessed:
+2026-08-05
+
+
+STEP 8 — ROBOTS.TXT
+=======================
+[8] Target Website — robots.txt
+URL:
+https://www.chicken-road2.app/robots.txt
+
+Target:
+chicken-road2.app
+
+Information obtained:
+
+- Public robots.txt configuration
+- General crawler permissions
+- Disallowed paths
+- Crawler-specific restrictions
+- Sitemap location
+- Publicly disclosed application paths
+
+Purpose:
+Passive OSINT analysis of crawler directives and publicly disclosed
+website paths.
+
+Accessed:
+2026-08-07
+
+
+
+STEP 9 — SITEMAP.XML
+======================
+[9] Target Website — sitemap.xml
+URL:
+https://www.chicken-road2.app/sitemap.xml
+
+Target:
+chicken-road2.app
+
+Purpose:
+Passive inspection of the publicly accessible XML sitemap to
+identify URLs intentionally exposed for search-engine discovery and
+to document the site's multilingual URL structure.
+
+Information obtained:
+
+- Root website URL
+- German language URL (/de)
+- Spanish language URL (/es)
+- French language URL (/fr)
+- Polish language URL (/pl)
+- Romanian language URL (/ro)
+- XHTML hreflang declarations
+- Last modification timestamp
+- Sitemap priority value
+
+Accessed:
+2026-08-07

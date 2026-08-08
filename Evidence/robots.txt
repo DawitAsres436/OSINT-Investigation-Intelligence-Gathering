@@ -1,0 +1,71 @@
+STEP 8 — ROBOTS.TXT
+
+Target:
+www.chicken-road2.app
+
+Source:
+Target website — robots.txt
+
+Source URL:
+https://www.chicken-road2.app/robots.txt
+
+Collection Date:
+2026-08-08
+
+Collection Method:
+Passive OSINT / Publicly accessible website file
+
+Observed Contents:
+
+User-Agent: *
+Allow: /
+Disallow: /api/*
+Disallow: /go/
+Disallow: /pages/condition-utilisation
+
+User-Agent: AhrefsBot
+Disallow: *
+
+User-Agent: SemrushBot
+Disallow: /
+
+User-Agent: dotbot
+Disallow: *
+
+User-Agent: Screaming Frog SEO Spider
+Disallow: *
+
+User-Agent: ChatGPT-User
+Disallow: /
+
+Sitemap:
+https://www.chicken-road2.app/sitemap.xml
+
+Observations:
+
+- The robots.txt file is publicly accessible.
+- General crawlers are allowed to access the website except for the
+  specified disallowed paths.
+- The /api/* path is excluded from general crawling.
+- The /go/ path is excluded from general crawling.
+- The /pages/condition-utilisation path is excluded from general crawling.
+- Several named search/SEO crawlers are explicitly blocked.
+- ChatGPT-User is explicitly disallowed.
+- The robots.txt file identifies the location of the site's sitemap.xml.
+
+Security / Intelligence Relevance:
+
+The disallowed paths are useful intelligence because they reveal
+specific application paths that the site operator does not want
+general crawlers to access.
+
+However, robots.txt is not an access-control mechanism. The presence
+of a path in robots.txt does not prove that the path is protected or
+contains sensitive information.
+
+Further investigation would be required before making any security
+conclusion about the listed paths.
+
+Screenshot:
+See supporting screenshot:
+STEP_8_ROBOTS_TXT.png

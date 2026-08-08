@@ -1,0 +1,56 @@
+STEP 4 — TECHNOLOGIES / INFRASTRUCTURE OBSERVATION
+
+Target:
+https://www.chicken-road2.app/
+
+Source:
+Cloudflare Radar Scan
+
+Source URL:
+https://radar.cloudflare.com/scan/b11841f3-aebf-4d7d-90f3-e95403cbf2f1/summary
+
+Scan ID:
+b11841f3-aebf-4d7d-90f3-e95403cbf2f1
+
+Scan Date:
+2026-08-08
+
+Page Title:
+Chicken Road 2 ▷ Casino Game + Free Demo
+
+Observed Technologies:
+- Cloudflare — CDN / web infrastructure
+- Cloudflare Browser Insights — Analytics / RUM
+- HSTS — Security
+- HTTP/3 — HTTP protocol
+- Next.js — Web framework
+- Node.js — Runtime
+- React — JavaScript framework
+- Vercel — PaaS / hosting platform
+- Webpack — JavaScript module bundler
+
+Network Observations:
+- Main IP: 104.21.38.193
+- IP organization: CLOUDFLARENET
+- IP location reported by Cloudflare Radar: United States
+- HTTP requests: 32
+- Domains contacted: 6
+- IP addresses contacted: 5
+- ASNs: 3
+- Cookies observed: 0
+
+Redirect:
+- Initial URL: https://chicken-road2.app/
+- Redirect status: HTTP 307
+- Final response: HTTP 200
+
+Security-related observations:
+- HSTS detected.
+- Cloudflare infrastructure detected.
+- HTTP/3 detected.
+- Cloudflare Radar reported "No classification" for the security verdict.
+- Cloudflare Radar reported 1 security violation.
+
+Important:
+The "1 security violation" is recorded as an observation only.
+Further investigation is required before describing it as a vulnerability or security weakness.

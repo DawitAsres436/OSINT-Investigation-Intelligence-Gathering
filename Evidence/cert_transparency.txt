@@ -1,0 +1,100 @@
+STEP 7 — CERTIFICATE TRANSPARENCY / HISTORICAL CERTIFICATES
+
+Target:
+chicken-road2.app
+
+Source:
+crt.sh — Certificate Transparency Search
+
+Source URL:
+https://crt.sh/?q=chicken-road2.app
+
+Collection Date:
+2026-08-08
+
+Collection Method:
+Passive OSINT / Public Certificate Transparency records
+
+Search Criteria:
+Identity search for chicken-road2.app
+
+Historical Certificate Observations:
+
+2026-07-22
+- crt.sh ID: 28143834942
+- crt.sh ID: 28143834315
+- Common Name: chicken-road2.app
+- Issuer: Let's Encrypt, CN=YR2
+- Validity: 2026-07-22 to 2026-10-20
+
+2026-07-05
+- crt.sh ID: 27701561448
+- crt.sh ID: 27700364145
+- Common Name: chicken-road2.app
+- Matching identities:
+  *.chicken-road2.app
+  chicken-road2.app
+- Issuer: Google Trust Services, CN=WE1
+- Validity: 2026-07-05 to 2026-10-03
+
+2026-06-11
+- crt.sh ID: 27100947051
+- Common Name: chicken-road2.app
+- Matching identities:
+  *.chicken-road2.app
+  chicken-road2.app
+- Issuer: SSL Corporation, CN=Cloudflare TLS Issuing ECC CA 4
+- Validity: 2026-06-11 to 2026-09-08
+
+2026-05-20
+- crt.sh IDs:
+  26495869339
+  26494417274
+- Common Name: chicken-road2.app
+- Issuer: Let's Encrypt, CN=R12
+- Validity: 2026-05-20 to 2026-08-18
+
+2026-05-07
+- crt.sh IDs:
+  26137814855
+  26176734287
+- Common Name: chicken-road2.app
+- Matching identities:
+  *.chicken-road2.app
+  chicken-road2.app
+- Issuer: Google Trust Services, CN=WE1
+- Validity: 2026-05-07 to 2026-08-05
+
+Historical records also show certificates issued by:
+- Let's Encrypt
+- Google Trust Services
+- Sectigo Limited
+- Cloudflare TLS issuing authorities
+
+Observation:
+
+Certificate Transparency records demonstrate recurring TLS
+certificate issuance for chicken-road2.app from multiple publicly
+trusted certificate authorities.
+
+The records include certificates covering both the base domain and
+wildcard subdomains.
+
+The historical CT data indicates that the domain has maintained
+multiple certificates over time.
+
+Important:
+
+Certificate Transparency records show certificates associated with
+the domain but do not by themselves prove that every certificate
+was actively served by the website at the time of collection.
+
+The currently observed live certificate should therefore be compared
+with CT records separately.
+
+Current live certificate observed through OpenSSL:
+Google Trust Services, CN=WE1
+Validity: 2026-07-05 to 2026-10-03
+
+No conclusion is made from the presence of multiple certificates
+without additional verification.

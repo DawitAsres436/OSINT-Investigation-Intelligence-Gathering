@@ -1,0 +1,361 @@
+STEP 11 — SECURITY OBSERVATIONS & RECOMMENDATIONS
+
+Target:
+chicken-road2.app
+
+Investigation Type:
+Passive OSINT / Public Information Gathering
+
+Collection Period:
+2026-08-04 to 2026-08-08
+
+1. OBSERVATION — PUBLICLY VISIBLE DNS AND CDN INFRASTRUCTURE
+
+Finding:
+
+The target domain resolves to publicly observable IPv4 and IPv6
+addresses associated with Cloudflare infrastructure.
+
+Observed IPv4 addresses:
+
+* 172.67.137.239
+* 104.21.38.193
+
+Observed IPv6 addresses:
+
+* 2606:4700:3034::6815:26c1
+* 2606:4700:3030::ac43:89ef
+
+Authoritative nameservers:
+
+* autumn.ns.cloudflare.com
+* denver.ns.cloudflare.com
+
+Source:
+
+ViewDNS DNS Record Lookup and independent DNS verification using
+Google Public DNS (8.8.8.8).
+
+Security Significance:
+
+The DNS configuration reveals the use of a third-party CDN/reverse
+proxy service. This provides useful infrastructure information for
+OSINT purposes, although the Cloudflare addresses should not be
+treated as the origin server addresses.
+
+Recommendation:
+
+No immediate security issue is established. The organization should
+ensure that the origin infrastructure, if separate from Cloudflare,
+is not directly exposed and only accepts intended traffic through the
+authorized reverse-proxy infrastructure.
+
+2. OBSERVATION — TECHNOLOGY AND HOSTING STACK DISCLOSURE
+
+Finding:
+
+Passive technology analysis identified several technologies and
+services associated with the website, including:
+
+* Cloudflare
+* Vercel
+* Next.js
+* Node.js
+* React
+* Webpack
+* Cloudflare Browser Insights
+* HTTP/3
+* HSTS
+
+The HTTP response also exposed an X-Vercel-ID value, indicating
+Vercel infrastructure behind the observed web service.
+
+Source:
+
+Cloudflare Radar scan and HTTP response header observation.
+
+Security Significance:
+
+Technology identification can assist an analyst in understanding the
+target's architecture. It can also provide an attacker with information
+about the software and hosting technologies that may require additional
+security monitoring.
+
+However, technology disclosure alone does not demonstrate a
+vulnerability.
+
+Recommendation:
+
+Keep production dependencies and frameworks regularly updated.
+Where practical, avoid unnecessarily exposing detailed infrastructure
+identifiers in publicly accessible responses.
+
+3. OBSERVATION — HTTP SECURITY HEADER COVERAGE
+
+Finding:
+
+The initial HTTP response from the bare domain returned a 307 redirect
+to the www host.
+
+The following security-related headers were not observed in the
+initial response:
+
+* Content-Security-Policy
+* X-Frame-Options
+* X-Content-Type-Options
+* Referrer-Policy
+* Permissions-Policy
+
+HSTS was observed:
+
+Strict-Transport-Security: max-age=63072000
+
+Source:
+
+HTTP response header inspection using curl.
+
+Security Significance:
+
+The absence of security headers in a particular response does not
+automatically represent a vulnerability. Some headers may be applied
+only to the final application response rather than the initial
+redirect response.
+
+Nevertheless, these headers can provide additional browser-side
+security controls when correctly configured.
+
+Recommendation:
+
+Review the security headers on the final 200 OK application response
+as well as redirect responses. Consider implementing an appropriate
+Content-Security-Policy, X-Content-Type-Options, Referrer-Policy,
+Permissions-Policy and clickjacking protection where applicable.
+
+4. OBSERVATION — WILDCARD TLS CERTIFICATE
+
+Finding:
+
+The current TLS certificate covers:
+
+* chicken-road2.app
+* *.chicken-road2.app
+
+Certificate issuer:
+
+Google Trust Services, CN=WE1
+
+Validity:
+
+2026-07-05 to 2026-10-03
+
+Certificate Transparency records also show historical certificates
+covering wildcard identities.
+
+Source:
+
+OpenSSL certificate inspection and crt.sh Certificate Transparency
+records.
+
+Security Significance:
+
+The wildcard certificate indicates that the certificate is capable of
+authenticating multiple subdomains under the target domain.
+
+Certificate Transparency records also demonstrate recurring certificate
+issuance associated with the domain.
+
+This does not prove that hidden or previously unknown subdomains are
+currently active.
+
+Recommendation:
+
+Maintain an inventory of authorized subdomains and periodically
+review Certificate Transparency records for unexpected certificates
+or newly appearing hostnames.
+
+5. OBSERVATION — ROBOTS.TXT REVEALS APPLICATION PATHS
+
+Finding:
+
+The publicly accessible robots.txt file contains the following
+disallowed paths:
+
+* /api/*
+* /go/*
+* /pages/condition-utilisation
+
+It also references the public sitemap:
+
+https://www.chicken-road2.app/sitemap.xml
+
+The file contains crawler-specific restrictions for several automated
+agents.
+
+Source:
+
+Target robots.txt file.
+
+Security Significance:
+
+robots.txt is not an access-control mechanism. Disallowed paths remain
+publicly discoverable and should not contain sensitive information
+unless they are separately protected.
+
+The presence of /api/ and /go/ indicates application functionality or
+routing paths that may be relevant to understanding the public attack
+surface.
+
+No vulnerability was established merely from their presence in
+robots.txt.
+
+Recommendation:
+
+Ensure that sensitive endpoints are protected through proper
+authentication and authorization rather than relying on robots.txt.
+Review publicly accessible API and redirect endpoints for unintended
+information exposure.
+
+6. OBSERVATION — PUBLIC SITEMAP INFORMATION
+
+Finding:
+
+The sitemap.xml file currently identifies the following public URLs:
+
+* https://www.chicken-road2.app/
+* https://www.chicken-road2.app/de
+* https://www.chicken-road2.app/es
+* https://www.chicken-road2.app/fr
+* https://www.chicken-road2.app/pl
+* https://www.chicken-road2.app/ro
+
+The sitemap also contains language alternate references and a last
+modification timestamp.
+
+Source:
+
+Public sitemap.xml.
+
+Security Significance:
+
+The sitemap provides useful information about the publicly indexed
+application structure and available language versions.
+
+No sensitive administrative or restricted endpoint was identified in
+the observed sitemap.
+
+Recommendation:
+
+Ensure that the sitemap contains only intended publicly accessible
+content and does not disclose private, staging, administrative or
+internal application URLs.
+
+7. OBSERVATION — CERTIFICATE ISSUANCE HISTORY
+
+Finding:
+
+Certificate Transparency records show repeated certificate issuance
+for chicken-road2.app by multiple publicly trusted certificate
+authorities, including:
+
+* Let's Encrypt
+* Google Trust Services
+* Sectigo
+* Cloudflare TLS issuing authorities
+
+Several historical certificates included wildcard coverage.
+
+Source:
+
+crt.sh Certificate Transparency database.
+
+Security Significance:
+
+Repeated certificate issuance is normal for actively maintained
+websites, particularly when certificates are automatically renewed or
+infrastructure changes.
+
+However, unexpected certificates can sometimes indicate unauthorized
+certificate issuance or previously unknown infrastructure.
+
+Recommendation:
+
+Periodically monitor Certificate Transparency logs for unexpected
+certificate issuance and investigate certificates that cannot be
+associated with authorized infrastructure or service providers.
+
+8. OVERALL SECURITY ASSESSMENT
+
+Based on the passive OSINT information collected during this
+investigation, no confirmed critical security vulnerability was
+identified.
+
+The primary security-relevant observations concern information
+disclosure and attack-surface visibility rather than demonstrated
+exploitation.
+
+The publicly observable environment includes:
+
+* Cloudflare reverse-proxy/CDN infrastructure
+* Vercel hosting indicators
+* Next.js, React and Node.js technologies
+* Public DNS information
+* Public TLS certificate information
+* Wildcard certificate coverage
+* Public robots.txt routing information
+* Public sitemap information
+* Publicly observable HTTP security headers
+
+These findings should be treated as intelligence observations rather
+than confirmed vulnerabilities.
+
+Further security testing would require authorization and would fall
+outside the scope of this passive OSINT investigation.
+
+9. GENERAL RECOMMENDATIONS
+
+10. Maintain current versions of application frameworks, libraries and
+    dependencies.
+
+11. Review HTTP security headers on all relevant application responses,
+    particularly the final 200 OK response.
+
+12. Ensure that robots.txt is never relied upon as an access-control
+    mechanism.
+
+13. Review API and redirect paths identified through public information
+    and ensure that sensitive functionality requires appropriate
+    authorization.
+
+14. Maintain strict separation between public CDN infrastructure and
+    any private origin infrastructure.
+
+15. Monitor Certificate Transparency logs for unexpected certificates.
+
+16. Periodically review DNS records and publicly observable
+    subdomains for unauthorized or obsolete infrastructure.
+
+17. Ensure that public sitemap files expose only intentionally
+    indexable content.
+
+18. Continue monitoring third-party infrastructure dependencies such
+    as Cloudflare and Vercel as part of the organization's external
+    attack-surface management process.
+
+19. Perform any active vulnerability assessment only with explicit
+    authorization from the system owner.
+
+CONCLUSION
+
+The passive investigation demonstrates that chicken-road2.app has a
+publicly observable and identifiable web infrastructure consisting of
+Cloudflare, Vercel and modern JavaScript web technologies.
+
+The investigation did not establish a confirmed exploitable
+vulnerability. The most relevant security considerations are the
+visibility of infrastructure and application paths, certificate
+history, technology disclosure and the configuration of browser
+security controls.
+
+All observations in this section should be interpreted together with
+the supporting evidence files and source references collected during
+the investigation.

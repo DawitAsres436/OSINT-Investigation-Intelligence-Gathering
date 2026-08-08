@@ -1,0 +1,388 @@
+STEP 10 — INTELLIGENCE ANALYSIS
+
+Target:
+chicken-road2.app
+
+Investigation Type:
+Passive OSINT / Public Information Gathering
+
+Analysis Date:
+2026-08-08
+
+
+1. CLOUDFLARE REVERSE-PROXY / CDN EXPOSURE
+
+Finding:
+
+The target domain resolves to Cloudflare IP addresses:
+
+- 172.67.137.239
+- 104.21.38.193
+
+The authoritative nameservers are:
+
+- autumn.ns.cloudflare.com
+- denver.ns.cloudflare.com
+
+The HTTP response also identifies Cloudflare through the
+Server header.
+
+Analysis:
+
+The evidence strongly indicates that Cloudflare is positioned
+between public users and the target web infrastructure.
+
+The observed IP addresses should therefore not automatically be
+interpreted as the origin server IP addresses.
+
+Security Significance:
+
+Cloudflare can conceal the origin infrastructure and provide
+CDN, reverse-proxy, caching and security services.
+
+At the same time, the use of Cloudflare means that passive DNS
+results alone provide limited information about the underlying
+hosting infrastructure.
+
+Assessment:
+
+Informational / Infrastructure Observation
+
+No direct vulnerability was established.
+
+
+2. VERCEL / NEXT.JS INFRASTRUCTURE
+
+Finding:
+
+Cloudflare Radar identified technologies and infrastructure
+associated with:
+
+- Vercel
+- Next.js
+- Node.js
+- React
+- Webpack
+- Cloudflare
+
+The HTTP response also contained an X-Vercel-ID header.
+
+Analysis:
+
+The evidence indicates that the application is likely deployed
+using Vercel infrastructure and built using the Next.js/React
+technology stack.
+
+Security Significance:
+
+Technology identification can help an analyst understand the
+application architecture and identify technologies that should
+be monitored for future security advisories.
+
+Technology disclosure itself is not a vulnerability.
+
+Assessment:
+
+Informational / Technology Fingerprinting
+
+No vulnerability was established from the technology
+identification alone.
+
+
+3. WILDCARD TLS CERTIFICATE
+
+Finding:
+
+The current TLS certificate contains:
+
+- chicken-road2.app
+- *.chicken-road2.app
+
+Certificate Transparency records also show previous certificates
+covering wildcard identities.
+
+Analysis:
+
+The wildcard certificate indicates that the certificate is valid
+for subdomains under chicken-road2.app.
+
+However, the presence of a wildcard certificate does not prove
+that those subdomains currently exist or are publicly accessible.
+
+The investigation did not identify an additional live subdomain
+through the passive sources examined.
+
+Security Significance:
+
+Wildcard certificates can be useful for identifying the potential
+scope of an organization's TLS configuration.
+
+They may also provide clues for further passive subdomain
+investigation.
+
+Assessment:
+
+Informational
+
+No exposed subdomain or certificate-related vulnerability was
+established.
+
+
+4. CERTIFICATE ROTATION / MULTIPLE CERTIFICATE AUTHORITIES
+
+Finding:
+
+Certificate Transparency records show certificates associated
+with the target issued by multiple certificate authorities,
+including:
+
+- Let's Encrypt
+- Google Trust Services
+- Sectigo
+- Cloudflare TLS issuing authorities
+
+Analysis:
+
+The domain has used multiple publicly trusted certificate
+authorities over time.
+
+This demonstrates recurring certificate issuance and changes
+in TLS infrastructure.
+
+Security Significance:
+
+Certificate Transparency provides useful historical information
+about changes in certificate deployment.
+
+However, multiple certificates do not indicate malicious activity
+or a security vulnerability by themselves.
+
+Assessment:
+
+Informational / Historical Infrastructure Observation
+
+
+5. HTTP SECURITY HEADERS
+
+Finding:
+
+The initial response from the bare domain returned:
+
+- HTTP 307 redirect
+- HSTS
+- Cloudflare server information
+- HTTP/3 advertisement
+
+The following headers were not observed in the tested response:
+
+- Content-Security-Policy
+- X-Frame-Options
+- X-Content-Type-Options
+- Referrer-Policy
+- Permissions-Policy
+
+Analysis:
+
+The target has HSTS enabled, which is a positive security
+configuration because it instructs compatible browsers to use
+HTTPS for the domain.
+
+However, the absence of the listed security headers from the
+initial 307 response may indicate that additional browser
+security controls should be reviewed on the final application
+response.
+
+Importantly, the test was performed against the initial redirect
+response. The absence of headers from this response alone does
+not establish that the final website response lacks those headers.
+
+Security Significance:
+
+Security headers can reduce the impact of certain classes of
+web attacks and strengthen browser-side security controls.
+
+Assessment:
+
+Security Configuration Observation
+
+Further verification of the final HTTP 200 response would be
+required before treating missing headers as a confirmed issue.
+
+
+6. ROBOTS.TXT INFORMATION DISCLOSURE
+
+Finding:
+
+robots.txt contains:
+
+- Disallow: /api/*
+- Disallow: /go/*
+- Disallow: /pages/condition-utilisation
+
+It also references:
+
+https://www.chicken-road2.app/sitemap.xml
+
+Several automated crawlers are explicitly restricted, including:
+
+- AhrefsBot
+- SemrushBot
+- dotbot
+- Screaming Frog SEO Spider
+- ChatGPT-User
+
+Analysis:
+
+robots.txt provides information about paths that the website
+operator does not want certain crawlers to access.
+
+The presence of /api/* and /go/* is particularly useful from an
+OSINT perspective because it reveals application path patterns.
+
+However, robots.txt is not an access-control mechanism.
+
+A Disallow directive does not prevent a user from requesting a
+resource directly.
+
+Security Significance:
+
+The file provides useful information about the application's
+URL structure and potentially interesting application areas.
+
+The existence of these paths does not prove that they contain
+sensitive information or vulnerabilities.
+
+Assessment:
+
+Informational / Attack-Surface Observation
+
+No vulnerability was established from robots.txt alone.
+
+
+7. SITEMAP INFORMATION
+
+Finding:
+
+The sitemap contains the following publicly listed URLs:
+
+- https://www.chicken-road2.app/
+- https://www.chicken-road2.app/de
+- https://www.chicken-road2.app/es
+- https://www.chicken-road2.app/fr
+- https://www.chicken-road2.app/pl
+- https://www.chicken-road2.app/ro
+
+The sitemap also contains hreflang declarations for multiple
+languages.
+
+Analysis:
+
+The sitemap exposes the publicly indexed URL structure of the
+website and indicates that the site supports multiple language
+versions.
+
+No additional subdomains were identified through the sitemap.
+
+Security Significance:
+
+Sitemaps can assist passive reconnaissance by revealing URLs
+that the site operator intends search engines to discover.
+
+In this case, the sitemap primarily exposes normal public website
+pages.
+
+Assessment:
+
+Informational
+
+No security vulnerability was identified.
+
+
+8. DNSSEC / DOMAIN CONFIGURATION
+
+Finding:
+
+Registry information indicates that the domain's DNS zone is
+signed, while the delegation was reported as unsigned.
+
+The domain uses Cloudflare authoritative nameservers.
+
+Analysis:
+
+The available registry information indicates DNSSEC-related
+configuration, although the registry representation should be
+interpreted carefully because zone signing and delegation status
+are distinct components.
+
+Security Significance:
+
+DNSSEC can provide cryptographic protection against certain forms
+of DNS tampering when correctly deployed throughout the chain.
+
+Assessment:
+
+Informational / Security Configuration Observation
+
+
+9. SUBDOMAIN DISCOVERY
+
+Finding:
+
+Passive sources examined during the investigation did not reveal
+an additional confirmed live subdomain beyond:
+
+www.chicken-road2.app
+
+Certificate Transparency contained wildcard certificates, but
+wildcard certificates alone do not prove the existence of
+individual subdomains.
+
+Analysis:
+
+The currently available passive evidence does not establish a
+larger publicly exposed subdomain attack surface.
+
+Security Significance:
+
+A limited publicly observable subdomain footprint reduces the
+amount of infrastructure that could be identified through the
+passive sources examined.
+
+This does not prove that additional subdomains do not exist.
+
+Assessment:
+
+No confirmed security issue identified.
+
+
+10. OVERALL SECURITY ASSESSMENT
+
+The investigation identified several useful infrastructure and
+configuration observations, including:
+
+- Cloudflare reverse-proxy infrastructure
+- Vercel / Next.js technology indicators
+- Public TLS certificate information
+- Historical Certificate Transparency records
+- HSTS
+- HTTP/3 support
+- Public robots.txt path information
+- Public sitemap information
+- Cloudflare DNS infrastructure
+- Limited publicly confirmed subdomain exposure
+
+No critical or high-severity vulnerability was established
+through the passive OSINT investigation.
+
+The most notable security observations are configuration and
+information-disclosure related rather than confirmed
+vulnerabilities.
+
+Further testing would be required to determine whether the
+application paths identified through robots.txt or other sources
+expose sensitive functionality.
+
+This investigation remained within passive OSINT and publicly
+accessible information gathering. No intrusive testing,
+authentication bypass, exploitation, or unauthorized access was
+performed.

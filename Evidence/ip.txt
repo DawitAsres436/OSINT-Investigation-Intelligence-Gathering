@@ -1,0 +1,51 @@
+STEP 3 — IP ADDRESS
+
+Target Domain:
+chicken-road2.app
+
+Source:
+ViewDNS DNS Record Lookup
+
+Source URL:
+https://viewdns.info/dnsrecord/
+
+Collection Date:
+2026-08-08
+
+Collection Method:
+Passive OSINT / Public DNS information
+
+A Records (IPv4):
+172.67.137.239
+104.21.38.193
+
+AAAA Records (IPv6):
+2606:4700:3034::6815:26c1
+2606:4700:3030::ac43:89ef
+
+Authoritative Nameservers:
+autumn.ns.cloudflare.com
+denver.ns.cloudflare.com
+
+SOA:
+autumn.ns.cloudflare.com.
+dns.cloudflare.com.
+
+TTL:
+A records: 300 seconds
+AAAA records: 300 seconds
+
+TXT Record:
+google-site-verification=0wvhA6b5wO4XvHwi25O0BDtvDU1zxYWWnF4yNXsZsFk
+
+Initial Observation:
+The domain resolves to multiple IPv4 and IPv6 addresses.
+The returned IP addresses are associated with Cloudflare
+infrastructure. This is consistent with the Cloudflare
+nameservers observed during the WHOIS investigation and the
+Cloudflare server header observed during HTTP analysis.
+
+The publicly resolved addresses should not automatically be
+treated as the origin server addresses because the target
+appears to use Cloudflare infrastructure as a reverse
+proxy/CDN.

@@ -1,0 +1,67 @@
+STEP 9 — SITEMAP.XML
+
+Target:
+chicken-road2.app
+
+Source:
+Target Website — Public sitemap.xml
+
+URL:
+https://www.chicken-road2.app/sitemap.xml
+
+Collection Date:
+2026-08-07
+
+Collection Method:
+Passive OSINT / Direct retrieval of publicly accessible sitemap.xml
+
+Observed Sitemap Structure:
+
+The sitemap uses the standard XML Sitemap protocol and contains the
+following publicly listed URLs:
+
+- https://www.chicken-road2.app/
+- https://www.chicken-road2.app/de
+- https://www.chicken-road2.app/es
+- https://www.chicken-road2.app/fr
+- https://www.chicken-road2.app/pl
+- https://www.chicken-road2.app/ro
+
+The sitemap also contains XHTML hreflang declarations for the
+following language variants:
+
+- de — German
+- es — Spanish
+- fr — French
+- pl — Polish
+- ro — Romanian
+
+The root URL contains the following last modification timestamp:
+
+2026-07-28T03:51:24.188Z
+
+Priority:
+1
+
+Observation:
+
+The publicly accessible sitemap exposes the root website and five
+language-specific URL paths.
+
+The sitemap provides evidence of the site's multilingual URL
+structure and identifies URLs that the site owner intends search
+engines to discover.
+
+Security Observation:
+
+No sensitive administrative, API, authentication, or internal
+URLs were observed in the retrieved sitemap.
+
+The sitemap therefore provides useful reconnaissance information
+but does not, by itself, indicate a security vulnerability.
+
+Important:
+
+A sitemap represents URLs intentionally submitted for search-engine
+discovery. Its contents should not be interpreted as a complete list
+of all URLs or application endpoints available on the website.

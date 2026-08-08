@@ -1,0 +1,146 @@
+WHOIS / DOMAIN REGISTRATION INFORMATION
+=======================================
+
+Target Domain:
+chicken-road2.app
+
+Source:
+WHOIS.com
+
+Source URL:
+https://www.whois.com/whois/chicken-road2.app
+
+Domain Information
+------------------
+Registered On:
+2025-05-13
+
+Expires On:
+2027-05-13
+
+Updated On:
+2026-05-04
+
+Domain Status:
+client transfer prohibited
+
+Name Servers:
+autumn.ns.cloudflare.com
+denver.ns.cloudflare.com
+
+Registrar Information
+---------------------
+Registrar:
+Key-Systems LLC
+
+IANA ID:
+1345
+
+Registrar Abuse Email:
+abuse@key-systems.net
+
+Registrar Abuse Phone:
++49.68949396850
+
+Registrant Contact
+------------------
+State:
+South Yorkshire
+
+Country:
+GB
+
+Email:
+email@domain-contact.org
+
+Technical Contact
+-----------------
+Country:
+GB
+
+Email:
+email@domain-contact.org
+
+Collection Date:
+2026-08-04
+
+Collection Method:
+Passive OSINT / Public WHOIS information
+
+
+
+
+
+
+
+========================================
+ICANN / RDAP CROSS-CHECK
+========================================
+
+Source:
+ICANN Lookup / Registry RDAP
+
+Domain:
+chicken-road2.app
+
+Registry Domain ID:
+E0EA18C9E-APP
+
+Domain Status:
+clientTransferProhibited
+
+Created:
+2025-05-13 14:03:26 UTC
+
+Updated:
+2026-05-04 00:01:08 UTC
+
+Registry Expiration:
+2027-05-13 14:03:26 UTC
+
+Registrar Expiration:
+2027-05-13 14:03:26 UTC
+
+Nameservers:
+autumn.ns.cloudflare.com
+denver.ns.cloudflare.com
+
+Registrar:
+Key-Systems GmbH
+
+IANA ID:
+1345
+
+Registrar Abuse Email:
+abusereport@key-systems.net
+
+Registrar Abuse Phone:
++49.68949396850
+
+Registrant Country:
+GB
+
+Registrant Region:
+South Yorkshire
+
+Registrant Email:
+info@domain-contact.org
+
+Technical Contact Country:
+GB
+
+Technical Contact Email:
+info@domain-contact.org
+
+DNSSEC:
+Zone Signed: Signed
+Delegation Signed: Unsigned
+
+Registry RDAP Server:
+https://pubapi.registry.google/rdap/domain/chicken-road2.app
+
+Registrar RDAP Server:
+https://rdap.rrpproxy.net/domain/chicken-road2.app
+
+RDAP Database Last Updated:
+2026-08-08 00:52:31 UTC

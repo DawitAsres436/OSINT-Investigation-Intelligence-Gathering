@@ -1,0 +1,46 @@
+STEP 5 — HTTP RESPONSE HEADERS
+
+Target:
+https://chicken-road2.app/
+
+Collection Date:
+2026-08-05
+
+Collection Method:
+Passive HTTP header observation using curl
+
+Command:
+curl -I https://chicken-road2.app/
+
+Observed Response:
+
+HTTP/2 307
+Location: https://www.chicken-road2.app/
+Content-Type: text/plain
+Cache-Control: public, max-age=0, must-revalidate
+Server: cloudflare
+Strict-Transport-Security: max-age=63072000
+X-Vercel-ID: cdg1::...
+CF-Cache-Status: DYNAMIC
+Alt-Svc: h3=":443"; ma=86400
+
+Observations:
+
+- The bare domain returns HTTP 307 Temporary Redirect.
+- The redirect points to https://www.chicken-road2.app/.
+- Cloudflare is identified in the Server response header.
+- HSTS is enabled with max-age=63072000.
+- HTTP/3 availability is advertised through the Alt-Svc header.
+- X-Vercel-ID indicates Vercel infrastructure is present behind the
+  observed HTTP service.
+- CF-Cache-Status is DYNAMIC.
+- No Content-Security-Policy header was observed in this response.
+- No X-Frame-Options header was observed in this response.
+- No X-Content-Type-Options header was observed in this response.
+- No Referrer-Policy header was observed in this response.
+- No Permissions-Policy header was observed in this response.
+
+Important:
+The absence of a header in this response does not by itself establish
+a security vulnerability. The test was performed against the initial
+HTTP 307 response from the bare domain.

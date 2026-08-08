@@ -1,0 +1,48 @@
+TARGET OVERVIEW
+===============
+
+Target URL:
+https://www.chicken-road2.app/
+
+Target Domain:
+chicken-road2.app
+
+Investigation Type:
+Passive OSINT / Public Information Gathering
+
+Investigation Start Date:
+2026-08-04
+
+Target Type:
+Website / Domain
+
+Protocol:
+HTTPS
+
+Observed Website Title:
+Chicken Road 2
+
+Observed Website Language:
+English
+
+Observed Website Purpose:
+The website presents itself as an informational website dedicated to
+the Chicken Road 2 game.
+
+Observed Game/Organization Reference:
+InOut Games
+
+Related Domain Observed:
+https://chicken-road.net/
+
+Initial Observation Date:
+2026-08-04
+
+Collection Method:
+Web browser / direct observation of publicly accessible website
+
+Authentication Required:
+No
+
+Intrusive Testing Performed:
+No

@@ -1,0 +1,56 @@
+STEP 5 — SSL/TLS CERTIFICATE
+
+Target:
+chicken-road2.app
+
+Collection Date:
+2026-08-05
+
+Collection Method:
+Passive TLS certificate inspection using OpenSSL.
+
+Command:
+openssl s_client -connect chicken-road2.app:443 -servername chicken-road2.app
+
+Certificate Subject:
+CN=chicken-road2.app
+
+Issuer:
+C=US, O=Google Trust Services, CN=WE1
+
+Validity:
+Not Before: 2026-07-05 03:37:50 GMT
+Not After:  2026-10-03 04:37:48 GMT
+
+Serial Number:
+42E66D0F2511D0E60E69DFDFE91E7FC7
+
+Signature Algorithm:
+ecdsa-with-SHA256
+
+Public Key:
+EC P-256 (prime256v1)
+
+Key Usage:
+Digital Signature
+
+Extended Key Usage:
+TLS Web Server Authentication
+
+Basic Constraints:
+CA=FALSE
+
+Subject Alternative Names:
+DNS:chicken-road2.app
+DNS:*.chicken-road2.app
+
+Certificate Transparency:
+SCTs present.
+
+Observation:
+The target uses a publicly trusted TLS certificate issued by
+Google Trust Services. The certificate covers both the base
+domain and wildcard subdomains.
+
+The certificate was valid at the time of collection and was
+observed through the target's public HTTPS endpoint.
